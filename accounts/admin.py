@@ -22,3 +22,9 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('username',)
 
 admin.site.register(CustomUser, CustomUserAdmin)
+
+
+# Customize the admin panel appearance
+admin.site.site_header = 'Kiptoo Admin Panel'
+admin.site.site_title = 'Kiptpp  Admin'
+admin.site.index_title = 'Welcome to Kiptoo Administration'

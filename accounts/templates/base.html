@@ -1,6 +1,64 @@
-{% if user.is_authenticated %}
-    <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'register' %}">Register</a>
-{% endif %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstract User Auth</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Static CSS file -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Additional styling for borders on toggle -->
+    <style>
+        /* Navbar link borders in collapsed mode */
+        
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+    <a class="navbar-brand text-white" href="#">Kiptoo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#">Jobs</a></li>
+            {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link text-white" href="#">Profile</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'logout' %}">
+                        Logout &rarr;
+                    </a>
+                </li>            {% else %}
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'register' %}">Register</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-4 flex-grow-1">
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-primary text-white text-center py-3 mt-auto">
+    <p>&copy; 2024 Kiptoo Kennedy. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap and jQuery scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+
+</body>
+</html>

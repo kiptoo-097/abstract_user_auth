@@ -1,8 +1,18 @@
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-
-    <a href="{% url 'register' %}">Don't an have account? Register</a>.
-</form>
+{% extends "base.html" %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: calc(100vh - 100px);">
+    <div class="card shadow" style="width: 400px;">
+        <div class="card-body">
+            <h2 class="text-center">Login</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+            <p class="text-center mt-3">Don't have an account? <a href="{% url 'register' %}">Register</a>.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
