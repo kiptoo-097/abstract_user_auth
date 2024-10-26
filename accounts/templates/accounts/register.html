@@ -1,0 +1,20 @@
+<h2>Register</h2>
+<form method="post" onsubmit="return validatePhoneNumber()">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
+
+<script>
+    function validatePhoneNumber() {
+        const phoneInput = document.querySelector('input[name="phone_number"]');
+        const phoneNumber = phoneInput.value;
+        const phonePattern = /^(07|01)\d{8}$/;
+
+        if (!phonePattern.test(phoneNumber)) {
+            alert("Phone number must start with '07' or '01' and be exactly 10 digits.");
+            return false;
+        }
+        return true;
+    }
+</script>
